@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "membres",
+  "info": {
+    "name": "membres"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "maxLength": 20,
+      "minLength": 3
+    },
+    "prenom": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50,
+      "minLength": 50
+    },
+    "mail": {
+      "type": "email",
+      "unique": true,
+      "maxLength": 250
+    },
+    "pwd": {
+      "type": "password",
+      "required": true,
+      "maxLength": 200,
+      "private": true
+    }
+  }
+}
