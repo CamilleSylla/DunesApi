@@ -68,7 +68,8 @@
     "book_limit": {
       "type": "integer",
       "max": 5,
-      "min": 2
+      "min": 2,
+      "default": 2
     }
   }
 }
