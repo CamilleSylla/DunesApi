@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "reservation_essaies",
   "info": {
-    "name": "Reservation essaie"
+    "name": "Reservation essaie",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Nom": {
+    "nom": {
       "type": "string"
     },
     "email": {

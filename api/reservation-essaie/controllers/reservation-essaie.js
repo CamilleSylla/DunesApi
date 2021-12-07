@@ -7,8 +7,10 @@
 
 module.exports = {
     verify : async ctx => {
-        const freeUserExist = await strapi.query('reservation-essaie').findOne({email : ctx.email})
-        const userIsMember = await strapi.query('user', 'users-permissions').findOne({email : ctx.email})
+        const {body} = ctx.request
+        console.log(body);
+        const freeUserExist = await strapi.query('reservation-essaie').findOne({email : body.email})
+        const userIsMember = await strapi.query('user', 'users-permissions').findOne({email : body.email})
         if (freeUserExist) {
             console.log(freeUserExist);
             return "Cette adresse mail a deja été utilisé, pour reserver un nouveau creaneau veuillez souscrire un abonnement en salle"
@@ -18,6 +20,8 @@ module.exports = {
             return "Vous posseder deja un compte membre, veuillez vous connecter pour reserver un spot"
         }
 
-        return (ctx.email)
+        const createFreeReservation = await strapi.query('reservation-essaie').create(body)
+
+        return (createFreeReservation)
     }
 };
