@@ -22,10 +22,10 @@
       "type": "integer"
     },
     "day": {
-      "type": "date"
+      "type": "string"
     },
     "time": {
-      "type": "time"
+      "type": "string"
     }
   }
 }

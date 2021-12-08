@@ -10,6 +10,7 @@ module.exports = {
         const {body} = ctx.request
         console.log(body);
         const freeUserExist = await strapi.query('reservation-essaie').findOne({email : body.email})
+        const currentCreneau = await strapi.query('creneaux').findOne({id: body.spot_id})
         const userIsMember = await strapi.query('user', 'users-permissions').findOne({email : body.email})
         if (freeUserExist) {
             console.log(freeUserExist);
@@ -19,7 +20,14 @@ module.exports = {
             console.log(userIsMember);
             return "Vous posseder deja un compte membre, veuillez vous connecter pour reserver un spot"
         }
+        if (!currentCreneau) {
+            console.log(currentCreneau);
+            return "La séance que vous venez de choisir n'existe pas"
+        }
 
+        body.time = currentCreneau.start
+        body.day = currentCreneau.jour.nom
+        
         const createFreeReservation = await strapi.query('reservation-essaie').create(body)
 
         return (createFreeReservation)
