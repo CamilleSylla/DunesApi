@@ -5,6 +5,12 @@
         "path": "/emails",
         "handler": "Email.send",
         "config": {}
+      },
+      {
+        "method": "POST",
+        "path": "/test",
+        "handler": "Email.test",
+        "config": {}
       }
     ]
   }
