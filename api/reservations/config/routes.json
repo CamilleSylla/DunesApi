@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/annulation",
+      "handler": "reservations.annulation",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "PUT",
       "path": "/reservations/:id",
       "handler": "reservations.update",

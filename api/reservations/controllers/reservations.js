@@ -46,5 +46,30 @@ module.exports = {
             
         }
         
+    },
+    annulation: async ctx => {
+        const { body } = ctx.request
+    //     // if (ctx.request &&  ctx.request.header.authorization && body) {
+    //         try {
+                const auth = await strapi.plugins[
+                    'users-permissions'
+                ].services.jwt.getToken(ctx);
+                const findReservation = await strapi.query('reservations').findOne({id : body.id})
+                if (Number(auth.id) === Number(findReservation.user_id)) {
+                    const deleteReservation = await strapi.query('reservations').delete({id : body.id})
+                    return "La reservation a bien été annuler"
+                } else {
+                    return "Oups, il y a eu un problème, veuillez rééssayer ultérierement"
+                }
+                //          
+    //    if (!auth) {
+    //                 throw new Error('Validation Error: User should be authenticated')
+    //             }
+    //             console.log(body);
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+            
+    //     // 
     }
 };
