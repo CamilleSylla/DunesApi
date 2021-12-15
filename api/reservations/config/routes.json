@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/reservations",
-      "handler": "reservations.find",
+      "handler": "reservations.user_reservations",
       "config": {
         "policies": []
       }

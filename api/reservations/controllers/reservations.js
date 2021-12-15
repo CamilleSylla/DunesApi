@@ -54,6 +54,9 @@ module.exports = {
                 const auth = await strapi.plugins[
                     'users-permissions'
                 ].services.jwt.getToken(ctx);
+                if (!auth) {
+                    throw new Error('Validation Error: User should be authenticated')
+                }
                 const findReservation = await strapi.query('reservations').findOne({id : body.id})
                 if (Number(auth.id) === Number(findReservation.user_id)) {
                     const deleteReservation = await strapi.query('reservations').delete({id : body.id})
@@ -61,15 +64,20 @@ module.exports = {
                 } else {
                     return "Oups, il y a eu un problème, veuillez rééssayer ultérierement"
                 }
-                //          
-    //    if (!auth) {
-    //                 throw new Error('Validation Error: User should be authenticated')
-    //             }
-    //             console.log(body);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-            
-    //     // 
+    },
+    user_reservations: async ctx => {
+        console.log(ctx.request.header.authorization);
+        if (ctx.request && ctx.request.header && ctx.request.header.authorization) {
+            const auth = await strapi.plugins[
+                'users-permissions'
+            ].services.jwt.getToken(ctx);
+            console.log(auth);
+            if (!auth) {
+                throw new Error('Validation Error: User should be authenticated')
+            }
+            const userReservations = await strapi.query('reservations').find({user_id : auth.id})
+            console.log(userReservations.length);
+            return userReservations
+        }
     }
 };

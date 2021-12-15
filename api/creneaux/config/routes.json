@@ -18,6 +18,14 @@
     },
     {
       "method": "GET",
+      "path": "/creneaux/all",
+      "handler": "creneaux.reservation_number_limitation",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/creneaux/count",
       "handler": "creneaux.count",
       "config": {

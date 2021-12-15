@@ -36,6 +36,9 @@
     "traning_start": {
       "type": "string",
       "required": true
+    },
+    "creneau_id": {
+      "type": "string"
     }
   }
 }
