@@ -69,7 +69,8 @@
       "type": "integer",
       "max": 5,
       "min": 2,
-      "default": 2
+      "default": 2,
+      "required": true
     }
   }
 }
