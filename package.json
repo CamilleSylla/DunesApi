@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi --openssl-legacy-provider build",
+    "build": "strapi build",
     "strapi": "strapi"
   },
   "dependencies": {
