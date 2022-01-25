@@ -1,5 +1,5 @@
-const parse = require('pg-connection-string').parse;
-const config = parse(process.env.DATABASE_URL);
+// const parse = require('pg-connection-string').parse;
+// const config = parse(process.env.DATABASE_URL);
 
 module.exports = ({ env }) => ({
     defaultConnection: 'default',
@@ -13,11 +13,10 @@ module.exports = ({ env }) => ({
           database: env('DATABASE_NAME', 'strapi'),
           username: env('DATABASE_USERNAME', 'strapi'),
           password: env('DATABASE_PASSWORD', 'strapi'),
-ssl: {
-            rejectUnauthorized: false,
-          },
         },
-        options: {},
+        options: {
+          ssl : false
+        },
       },
     },
   });
