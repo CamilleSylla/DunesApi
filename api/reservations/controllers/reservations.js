@@ -79,5 +79,18 @@ module.exports = {
             console.log(userReservations.length);
             return userReservations
         }
+    },
+    getAllReservationById: async ctx => {
+        if (ctx.request && ctx.request.header && ctx.request.header.authorization) {
+            const auth = await strapi.plugins[
+                'users-permissions'
+            ].services.jwt.getToken(ctx);
+            console.log(auth);
+            if (!auth) {
+                throw new Error('Validation Error: User should be authenticated')
+            }
+            const allReservations = await strapi.query('reservations').find({creneau_id: id})
+            return allReservations
+        }
     }
 };
